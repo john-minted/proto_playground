@@ -1,0 +1,9 @@
+message CarRepeat {
+
+  repeated CarSeat seats = 1;
+
+}
+
+message CarSeat {
+  required string color = 1;
+}

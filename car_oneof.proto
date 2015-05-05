@@ -1,0 +1,10 @@
+message CarOneOf {
+
+  required uint32 num_wheels = 1;
+
+  oneof car_specs{
+    string color = 16;
+    string brand = 17;
+  }
+}
+
