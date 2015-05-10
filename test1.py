@@ -3,6 +3,25 @@ from car_oneof_pb2 import CarOneOf
 from car_repeat_pb2 import CarRepeat
 
 
+def test_not_set_is_none():
+  """Show if an unset field shows up as none
+  """
+  print '### test not set is none ###'
+  car1 = Car()
+  num_wheels = car1.num_wheels
+  if num_wheels is None:
+    print 'not setting car1.num_wheels makes num_wheels None'
+  else:
+    print 'num_wheels type is {0}'.format(type(num_wheels))
+    print 'num_wheels is {0}'.format(num_wheels)
+
+  print 'running HasField shows if field is set'
+  if car1.HasField('num_wheels'):
+    print 'car1 has num_wheels set'
+  else:
+    print 'car1 does not have num_wheels set'
+
+
 def test_oneof():
   """Show that schema with oneof can be backwards compatible with
   schema without oneof
@@ -45,13 +64,30 @@ def test_repeat():
   print 'type:  ' + str(type(car.seats))
   print 'new len = {0}'.format(len(car.seats))
 
+  print '--- new car w/o repeat field set ---'
+  car_no_set = CarRepeat()
+  print 'has name field: ' + str(car_no_set.HasField('name'))
+  print 'len car_repeat.seats: ' + str(len(car_no_set.seats))
+  try:
+    if car_no_set.HasField('seats'):
+      print 'call to HasField = true'
+    else:
+      print 'call to HasField = false'
+  except ValueError as e:
+    print 'cannot call HasField on repeat: ' + str(e)
+
 
 def main():
 
+  test_not_set_is_none()
+  print ''
+  print ''
   test_oneof()
   print ''
   print ''
   test_repeat()
+  print ''
+
 
 if __name__ == '__main__':
   print 'blah'

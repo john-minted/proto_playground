@@ -1,6 +1,7 @@
 message CarRepeat {
 
   repeated CarSeat seats = 1;
+  optional string name = 2;
 
 }
 
