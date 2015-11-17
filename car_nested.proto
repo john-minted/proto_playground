@@ -1,0 +1,9 @@
+message CarNested {
+  message Id {
+    required uint32 id = 1;
+  }
+
+  required Id id = 1;
+
+}
+

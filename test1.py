@@ -1,6 +1,15 @@
 from car_pb2 import Car
 from car_oneof_pb2 import CarOneOf
 from car_repeat_pb2 import CarRepeat
+from car_nested_pb2 import CarNested
+
+def test_nested():
+  """Test nested messages
+  """
+  print '### test nested messages ###'
+  car_nested = CarNested()
+  car_nested.id.id = 1
+  print 'car id: ' + str(car_nested.id.id)
 
 
 def test_not_set_is_none():
@@ -87,6 +96,8 @@ def main():
   print ''
   test_repeat()
   print ''
+  print ''
+  test_nested()
 
 
 if __name__ == '__main__':
